@@ -86,7 +86,7 @@ class CI_Form_validation
         array $errors = []
     ): CI_Form_validation {
         if (
-            $this->request->getMethod() !== 'post'
+            strtoupper($this->request->getMethod()) !== 'POST'
             && empty($this->validation_data)
         ) {
             return $this;
