@@ -1,5 +1,5 @@
 {
-    "name": "kenjis/ci3-to-4-upgrade-helper",
+    "name": "troym/ci3-to-4-upgrade-helper",
     "type": "library",
     "description": "Help upgrade from CodeIgniter3 to CodeIgniter4",
     "keywords": ["codeigniter","codeigniter3","codeigniter4"],
