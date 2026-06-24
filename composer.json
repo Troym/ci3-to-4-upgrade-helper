@@ -21,7 +21,7 @@
         }
     },
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.2",
         "kenjis/ci3-like-captcha": "^1.0.1",
         "kenjis/phpunit-helper": "^1.1.2"
     },
@@ -35,7 +35,7 @@
         "phpmetrics/phpmetrics": "^2.7",
         "doctrine/coding-standard": "^9.0",
         "friendsofphp/php-cs-fixer": "^3.4",
-        "codeigniter4/codeigniter4": "^4.3.1",
+        "codeigniter4/codeigniter4": "^4.7.0",
         "mikey179/vfsstream": "^1.6.11"
     },
     "repositories": [

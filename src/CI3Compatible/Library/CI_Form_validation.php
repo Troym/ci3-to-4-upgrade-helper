@@ -219,6 +219,17 @@ class CI_Form_validation
     }
 
     /**
+     * CI4 method (added in CI 4.4)
+     * Returns only the data that was actually validated.
+     *
+     * @return array
+     */
+    public function getValidated(): array
+    {
+        return $this->validation->getValidated();
+    }
+
+    /**
      * Get Array of Error Messages
      *
      * Returns the error messages as an array

@@ -13,13 +13,10 @@ declare(strict_types=1);
 
 namespace Kenjis\CI3Compatible\Test\Traits;
 
-use CodeIgniter\CodeIgniter;
 use CodeIgniter\Session\Handlers\ArrayHandler;
 use CodeIgniter\Session\SessionInterface;
 use CodeIgniter\Test\Mock\MockSession;
 use Config\Services;
-
-use function version_compare;
 
 trait SessionTest
 {
@@ -50,10 +47,6 @@ trait SessionTest
     public function mockSession(): void
     {
         $config = config('Session');
-
-        if (version_compare(CodeIgniter::CI_VERSION, '4.4.0', '<')) {
-            $config = config('App');
-        }
 
         $this->mockSession = new MockSession(
             new ArrayHandler($config, '0.0.0.0'),
