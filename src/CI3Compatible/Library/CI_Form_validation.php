@@ -22,6 +22,7 @@ use Kenjis\CI3Compatible\Exception\NotSupportedException;
 
 use function get_instance;
 use function is_array;
+use function strtoupper;
 
 class CI_Form_validation
 {

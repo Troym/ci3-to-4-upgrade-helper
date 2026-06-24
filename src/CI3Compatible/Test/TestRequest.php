@@ -16,9 +16,8 @@ namespace Kenjis\CI3Compatible\Test;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\HTTP\Response;
 use CodeIgniter\Test\CIUnitTestCase;
-use CodeIgniter\Test\FeatureResponse;
+use CodeIgniter\Test\TestResponse;
 use Config\App;
-use Kenjis\CI3Compatible\Test\TestCase\TestCase;
 
 use function get_instance;
 use function strtolower;
@@ -28,10 +27,10 @@ class TestRequest
     /** @var TestRequest */
     private static $instance;
 
-    /** @var TestCase */
+    /** @var CIUnitTestCase */
     private $testCase;
 
-    /** @var FeatureResponse */
+    /** @var TestResponse */
     private $result;
 
     /** @var callable[] callable called post controller constructor */
@@ -43,12 +42,7 @@ class TestRequest
 
         $this->testCase = $testCase;
 
-        $this->initGlobalSession();
-    }
-
-    private function initGlobalSession()
-    {
-        $_SESSION = $_SESSION ?? [];
+        $_SESSION ??= [];
     }
 
     public static function getInstance(): self
@@ -65,6 +59,8 @@ class TestRequest
      */
     public function request(string $httpMethod, $argv, $params = []): string
     {
+        $_SESSION ??= [];
+
         try {
             $this->result = $this->testCase->withSession($_SESSION)->call(
                 strtolower($httpMethod),
@@ -76,10 +72,10 @@ class TestRequest
             $response->setStatusCode(404);
             $response->setBody('');
 
-            $this->result = new FeatureResponse($response);
+            $this->result = new TestResponse($response);
         }
 
-        return $this->result->response()->getBody();
+        return (string) $this->result->response()->getBody();
     }
 
     /**

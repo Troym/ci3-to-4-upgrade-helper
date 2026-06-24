@@ -17,6 +17,7 @@ use Config\Services;
 use Kenjis\CI3Compatible\Core\CI_Controller;
 use Kenjis\CI3Compatible\Core\CoreLoader;
 
+use function assert;
 use function get_instance;
 
 /**
@@ -38,6 +39,7 @@ trait ResetInstance
         new CoreLoader();
 
         $this->createCodeIgniterInstance($useMyController);
+        /** @psalm-suppress UnsupportedReferenceUsage */
         $this->CI =& get_instance();
     }
 
@@ -56,7 +58,10 @@ trait ResetInstance
         bool $useMyController = false
     ): CI_Controller {
         if ($useMyController) {
-            return new $this->controllerClass();
+            $instance = new $this->controllerClass();
+            assert($instance instanceof CI_Controller);
+
+            return $instance;
         }
 
         return new CI_Controller();

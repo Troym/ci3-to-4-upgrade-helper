@@ -73,7 +73,7 @@ MonkeyPatchManager::init([
 ]);
 */
 
-function loadTestBootstrap()
+function loadTestBootstrap(): void
 {
     if (requireTestBootstrap() === false) {
         throw new RuntimeException(
@@ -82,7 +82,7 @@ function loadTestBootstrap()
     }
 }
 
-function requireTestBootstrap()
+function requireTestBootstrap(): bool
 {
     $testBootstraps = [
         __DIR__ . '/../../../../../codeigniter4/framework/system/Test/bootstrap.php',

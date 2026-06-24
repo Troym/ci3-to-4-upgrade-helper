@@ -11,8 +11,9 @@ declare(strict_types=1);
  * @see https://github.com/kenjis/ci3-to-4-upgrade-helper
  */
 
+use CodeIgniter\HTTP\Exceptions\RedirectException;
 use CodeIgniter\HTTP\URI;
-use CodeIgniter\Router\Exceptions\RedirectException;
+use Config\App;
 use Config\Services;
 use Kenjis\CI3Compatible\Exception\NotSupportedException;
 
@@ -35,16 +36,16 @@ if (! function_exists('base_url_')) {
         // We should be using the configured baseURL that the user set;
         // otherwise get rid of the path, because we have
         // no way of knowing the intent...
-        $config = Services::request()->config;
+        $appConfig = config(App::class);
 
         // If baseUrl does not have a trailing slash it won't resolve
         // correctly for users hosting in a subfolder.
-        $baseUrl = ! empty($config->baseURL) && $config->baseURL !== '/'
-            ? rtrim($config->baseURL, '/ ') . '/'
-            : $config->baseURL;
+        $baseUrl = ! empty($appConfig->baseURL) && $appConfig->baseURL !== '/'
+            ? rtrim($appConfig->baseURL, '/ ') . '/'
+            : $appConfig->baseURL;
 
         $url = new URI($baseUrl);
-        unset($config);
+        unset($appConfig);
 
         // Merge in the path set by the user, if any
         if (! empty($uri)) {

@@ -35,6 +35,11 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+// Test controller routes (explicit — Feature::$autoRoutesImproved is true in
+// CI 4.7+ so legacy setAutoRoute() no longer matches plain method names)
+$routes->get('test/index', 'Test::index');
+$routes->get('test/redirect', 'Test::redirect');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

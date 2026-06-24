@@ -59,7 +59,7 @@ trait FeatureTest
      *
      * @param int $code
      */
-    public function assertResponseCode(int $code)
+    public function assertResponseCode(int $code): void
     {
         $this->request->assertStatus($code);
     }

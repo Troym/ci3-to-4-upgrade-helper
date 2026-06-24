@@ -88,7 +88,7 @@
             "./vendor/bin/php-cs-fixer fix"
         ],
         "sa": [
-            "phpstan analyse -c phpstan.neon",
+            "phpstan analyse -c phpstan.neon --memory-limit=512M",
             "psalm --show-info=true",
             "./vendor/bin/phpmd src text ./phpmd.xml"
         ],

@@ -135,7 +135,7 @@ class CI_EmailTest extends TestCase
 
         $debugPrintSubject = $email->print_debugger(['subject']);
         $this->assertStringContainsString(
-            '=?utf-8?Q?=56=65=72=79=20=67=6F=6F=64=20=6E=65=77=73?=',
+            '=?UTF-8?Q?Very=20good=20news?=',
             $debugPrintSubject
         );
 
@@ -150,6 +150,6 @@ class CI_EmailTest extends TestCase
     {
         parent::tearDown();
 
-        Services::reset(true);
+        Services::resetSingle('email');
     }
 }

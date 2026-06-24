@@ -58,7 +58,9 @@ class CI_UploadTest extends TestCase
     {
         parent::tearDown();
 
-        Services::reset(true);
+        Services::resetSingle('superglobals');
+        Services::resetSingle('request');
+        Services::resetSingle('validation');
     }
 
     public function test_create_instance(): void

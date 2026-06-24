@@ -17,6 +17,9 @@ use CodeIgniter\Session\Handlers\ArrayHandler;
 use CodeIgniter\Session\SessionInterface;
 use CodeIgniter\Test\Mock\MockSession;
 use Config\Services;
+use Config\Session;
+
+use function assert;
 
 trait SessionTest
 {
@@ -34,9 +37,9 @@ trait SessionTest
         $this->resetInstance();
     }
 
-    private function initGlobalSession()
+    private function initGlobalSession(): void
     {
-        $_SESSION = $_SESSION ?? [];
+        $_SESSION ??= [];
     }
 
     /**
@@ -47,6 +50,7 @@ trait SessionTest
     public function mockSession(): void
     {
         $config = config('Session');
+        assert($config instanceof Session);
 
         $this->mockSession = new MockSession(
             new ArrayHandler($config, '0.0.0.0'),

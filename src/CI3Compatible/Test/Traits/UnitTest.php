@@ -17,6 +17,7 @@ use Config\Services;
 use Kenjis\CI3Compatible\Core\CI_Controller;
 use Kenjis\CI3Compatible\Core\CI_Model;
 
+use function assert;
 use function get_instance;
 use function strrpos;
 use function substr;
@@ -33,12 +34,14 @@ trait UnitTest
         $this->resetInstance();
 
         $controller = new $classname();
+        assert($controller instanceof CI_Controller);
         $controller->initController(
             Services::request(),
             Services::response(),
             Services::logger()
         );
 
+        /** @psalm-suppress UnsupportedReferenceUsage */
         $this->CI =& get_instance();
 
         return $controller;

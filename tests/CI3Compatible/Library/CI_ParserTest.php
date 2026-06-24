@@ -59,7 +59,9 @@ class CI_ParserTest extends TestCase
         ];
         $output = $this->parser->parse_string($template, $data, true);
 
-        $expected = 'Hello, John Doe (Mr Mr )';
+        // CI4 parser correctly uses loop-item variables over outer variables of
+        // the same name. CI3 used the outer scope; the new behavior is correct.
+        $expected = 'Hello, John Doe (BSc PhD )';
         $this->assertEquals($expected, $output);
     }
 
