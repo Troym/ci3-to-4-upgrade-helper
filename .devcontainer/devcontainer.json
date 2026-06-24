@@ -1,0 +1,29 @@
+{
+  "name": "CI3 to CI4 Upgrade Helper",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "xdebug.php-debug",
+        "wongjn.php-sniffer",
+        "calebporzio.better-phpunit"
+      ],
+      "settings": {
+        "php.validate.executablePath": "/usr/local/bin/php",
+        "intelephense.environment.phpVersion": "8.2",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+  "postCreateCommand": "composer install",
+  "remoteUser": "vscode"
+}
